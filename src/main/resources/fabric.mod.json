@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "botm",
   "version": "${version}",
 
-  "name": "Example Mod",
+  "name": "Breath of the Minecraft",
   "description": "This mod adds some stuff from The Legend of Zelda: Breath of the Wild into Minecraft, I made this mod mainly to spite my buddy who said that someone was already doing this.",
   "authors": [
     "Me (Sunskimmer82#6969)"
@@ -23,7 +23,7 @@
     ]
   },
   "mixins": [
-    
+    "botm.mixins.json"
   ],
 
   "depends": {
@@ -33,6 +33,6 @@
     "java": ">=17"
   },
   "suggests": {
-    "another-mod": "*"
+    
   }
 }

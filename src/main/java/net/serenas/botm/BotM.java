@@ -17,7 +17,7 @@ public class BotM implements ModInitializer{
 
     public static final Item TRAVELERS_BOW = new TravelersBow(new FabricItemSettings().maxCount(1).maxDamage(64).rarity(Rarity.COMMON));
 
-
+    public static final Item MIPHAS_GRACE = new MiphasGrace(new Item.Settings().fireproof().maxCount(1).rarity(Rarity.EPIC).maxDamage(128));
 
     @Override
     public void onInitialize() {
@@ -26,7 +26,7 @@ public class BotM implements ModInitializer{
 
         Registry.register(Registries.ITEM, new Identifier("botm", "travelers_bow"), TRAVELERS_BOW);
 
-
+        Registry.register(Registries.ITEM, new Identifier("botm", "miphas_grace"), MIPHAS_GRACE);
 
 
 

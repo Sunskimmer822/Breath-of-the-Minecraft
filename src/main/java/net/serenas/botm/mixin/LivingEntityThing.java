@@ -1,6 +1,7 @@
 package net.serenas.botm.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -19,11 +20,12 @@ import net.serenas.botm.BotM;
 @Mixin(LivingEntity.class)
 public class LivingEntityThing {
 
-    @Inject(at = @At("HEAD"), method = "tryUseTotem")
+    public ItemStack itemStack;
+
+    @Inject(at = @At("RETURN"), method = "tryUseTotem")
     private void tryUseTotem(DamageSource damageSource, CallbackInfoReturnable info) {
         LivingEntity livingEntity = ((LivingEntity) (Object) this);
         float maxHP = livingEntity.getMaxHealth();
-        ItemStack itemStack = null;
         if (livingEntity instanceof PlayerEntity) {
             PlayerEntity playerEntity = ((PlayerEntity) (Object) this);
             PlayerInventory inventory = playerEntity.getInventory();
@@ -37,7 +39,6 @@ public class LivingEntityThing {
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 300, 3));
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, 800, 1));
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 300, 1));
-                    livingEntity.world.sendEntityStatus(livingEntity, (byte)35);
                     itemStack.damage(1, playerEntity.getRandom(), (ServerPlayerEntity)playerEntity);
                 break;
                 } 
@@ -47,6 +48,5 @@ public class LivingEntityThing {
         }
 
     }
-    
 
 }

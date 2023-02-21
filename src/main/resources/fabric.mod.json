@@ -4,9 +4,9 @@
   "version": "${version}",
 
   "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "This mod adds some stuff from The Legend of Zelda: Breath of the Wild into Minecraft, I made this mod mainly to spite my buddy who said that someone was already doing this.",
   "authors": [
-    "Me!"
+    "Me (Sunskimmer82#6969)"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
@@ -19,11 +19,11 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "net.serenas.botm.BotM"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    
   ],
 
   "depends": {

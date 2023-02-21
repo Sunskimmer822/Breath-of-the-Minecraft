@@ -7,3 +7,7 @@ For setup instructions please see the [fabric wiki page](https://fabricmc.net/wi
 ## Building
 
 While in the root of the repository, run `./gradlew genSources` and then `./gradlew build`. The mod will be located at `./build/libs/BotM-[version].jar`.
+
+## Known Bugs
+
+Mipha's Grace will still make `tryUseTotem` return false, registering the player as dead and as such increase stats and drop items/XP whether or not they have Mipha's Grace in their inventory. Pressing `Respawn` will simply get rid of the overlay and allow the player to continue on.

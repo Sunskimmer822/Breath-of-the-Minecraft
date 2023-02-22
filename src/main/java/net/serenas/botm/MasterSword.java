@@ -1,10 +1,7 @@
 package net.serenas.botm;
 
-import net.minecraft.item.Item;
+public class MasterSword extends SwordItem {
 
-public class MasterSword extends Item {
-	public MasterSword(Settings settings) {
-		super(settings);
-	}
-	
+    public MasterSword(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings) {
+	            super(toolMaterial, attackDamage, attackSpeed, settings);
 }

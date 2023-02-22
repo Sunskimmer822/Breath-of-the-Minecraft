@@ -1,7 +1,6 @@
 package net.serenas.botm.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -22,8 +21,8 @@ public class LivingEntityThing {
 
     public ItemStack itemStack;
 
-    @Inject(at = @At("RETURN"), method = "tryUseTotem")
-    private void tryUseTotem(DamageSource damageSource, CallbackInfoReturnable info) {
+    @Inject(at = @At("RETURN"), method = "tryUseTotem", cancellable = true)
+    private void tryUseTotem(DamageSource damageSource, CallbackInfoReturnable<Boolean> info) {
         LivingEntity livingEntity = ((LivingEntity) (Object) this);
         float maxHP = livingEntity.getMaxHealth();
         if (livingEntity instanceof PlayerEntity) {
@@ -39,10 +38,11 @@ public class LivingEntityThing {
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 300, 3));
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, 800, 1));
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 300, 1));
-                    itemStack.damage(1, playerEntity.getRandom(), (ServerPlayerEntity)playerEntity);
+                    inventory.setStack(i, BotM.MIPHAS_GRACE_USED.getDefaultStack());
+                    info.setReturnValue(true);
                 break;
                 } 
-                else itemStack = null;
+
             }
 
         }

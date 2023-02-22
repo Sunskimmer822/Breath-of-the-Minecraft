@@ -42,6 +42,11 @@ public class BotM implements ModInitializer{
 
 
         ServerTickEvents.END_WORLD_TICK.register((world) -> {
+
+            //MIPHA'S GRACE
+            //Gets list of all online players, iterates over said players and iterates over every one of their slots. If an inactive 
+            //Mipha's Grace is found in any inventory it will first check if the item is at the threshold for being recharged, 
+            //otherwise it will ensure the tag is present and change the tag to include the new value every tick.
             List<ServerPlayerEntity> players = world.getPlayers();
             Integer numPlayers = players.size();
             Integer e;
@@ -71,6 +76,10 @@ public class BotM implements ModInitializer{
                     }
                 }
             }
+
+            //MASTER SWORD
+
+
         });
 
         LOGGER.info("BotM successfully initialized.");

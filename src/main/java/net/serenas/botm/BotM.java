@@ -8,7 +8,10 @@ import org.slf4j.LoggerFactory;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.entity.projectile.ExplosiveProjectileEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -28,6 +31,12 @@ public class BotM implements ModInitializer{
 
     public static final Item MIPHAS_GRACE_USED = new MiphasGraceUsed(new Item.Settings().fireproof().maxCount(1).rarity(Rarity.EPIC));
 
+    public static final EntityType<? extends ExplosiveProjectileEntity> MASTER_SWORD_BEAM_ENTITY = Registry.register(Registries.ENTITY_TYPE, new Identifier("botm", "master_sword_beam"), FabricEntityTypeBuilder.create().entityFactory(MasterSwordBeamEntity::new).build());
+
+    
+
+    
+
     @Override
     public void onInitialize() {
 
@@ -38,6 +47,8 @@ public class BotM implements ModInitializer{
         Registry.register(Registries.ITEM, new Identifier("botm", "miphas_grace"), MIPHAS_GRACE);
 
         Registry.register(Registries.ITEM, new Identifier("botm", "miphas_grace_used"), MIPHAS_GRACE_USED);
+
+        
 
 
 
@@ -60,7 +71,7 @@ public class BotM implements ModInitializer{
                     ItemStack stack = inventory.getStack(f);
                     if (stack.isOf(BotM.MIPHAS_GRACE_USED)) {
                         NbtCompound nbt = stack.getOrCreateNbt();
-                        if (nbt.getInt("rechargeTicks") == 9000) {
+                        if (nbt.getInt("rechargeTicks") == 12000) {
                             inventory.setStack(f, BotM.MIPHAS_GRACE.getDefaultStack());
                             LOGGER.info("Mipha's Grace is now ready for "+serverPlayerEntity.getEntityName());
                             break;

@@ -4,7 +4,9 @@ import java.util.List;
 
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.text.Text;
@@ -28,15 +30,20 @@ public class ChargedMasterSword extends SwordItem {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
-        if (playerEntity.getHealth() == playerEntity.getMaxHealth()) {
+        if (playerEntity.getHealth() > playerEntity.getMaxHealth()-1) {
             //master sword beam
             //MasterSwordBeamEntity beamEntity = new MasterSwordBeamEntity(world, owner, posvec3d)
-            MasterSwordBeamEntity beamEntity = new MasterSwordBeamEntity(BotM.MASTER_SWORD_BEAM_ENTITY, world);
-            beamEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), playerEntity.getRoll(), 20f, 2f);
-            beamEntity.setPosition(playerEntity.getPos());
-            world.spawnEntity(beamEntity);
+            ArrowEntity arrow = new ArrowEntity(world, playerEntity, Items.SPECTRAL_ARROW.getDefaultStack());
+            arrow.setPosition(playerEntity.getEyePos());
+            arrow.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), playerEntity.getRoll(), 10f, 2f);
+            world.spawnEntity(arrow);
             playerEntity.getItemCooldownManager().set(this, 40);
-        }
-        return new TypedActionResult<ItemStack>(ActionResult.SUCCESS, playerEntity.getStackInHand(hand));
+            return new TypedActionResult<ItemStack>(ActionResult.SUCCESS, playerEntity.getStackInHand(hand));
+        } else return new TypedActionResult<ItemStack>(ActionResult.PASS, playerEntity.getStackInHand(hand));
+    }
+
+    @Override
+    public boolean hasGlint(ItemStack stack) {
+        return true;
     }
 }

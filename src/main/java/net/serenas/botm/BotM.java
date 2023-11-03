@@ -10,11 +10,8 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.entity.projectile.ExplosiveProjectileEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -44,8 +41,6 @@ public class BotM implements ModInitializer{
 
     public static final Identifier MIPHAS_GRACE_READY_SOUND_IDENTIFIER = new Identifier("botm:miphas_grace_ready");
     public static final SoundEvent MIPHAS_GRACE_READY_SOUND = SoundEvent.of(MIPHAS_GRACE_READY_SOUND_IDENTIFIER);
-
-    public static final EntityType<? extends ExplosiveProjectileEntity> MASTER_SWORD_BEAM_ENTITY = Registry.register(Registries.ENTITY_TYPE, new Identifier("botm", "master_sword_beam"), FabricEntityTypeBuilder.create().entityFactory(MasterSwordBeamEntity::new).build());
 
     public static final DefaultParticleType BLUE_FLAME = FabricParticleTypes.simple();
 
@@ -82,8 +77,6 @@ public class BotM implements ModInitializer{
         Registry.register(Registries.ITEM, new Identifier("botm", "miphas_grace"), MIPHAS_GRACE);
 
         Registry.register(Registries.ITEM, new Identifier("botm", "miphas_grace_used"), MIPHAS_GRACE_USED);
-
-        //Registry.register(Registries.ENTITY_TYPE, new Identifier("botm", "master_sword_beam"), MASTER_SWORD_BEAM_ENTITY);
 
         Registry.register(Registries.PARTICLE_TYPE, new Identifier("botm", "blue_flame"), BLUE_FLAME);
 
@@ -125,7 +118,8 @@ public class BotM implements ModInitializer{
                         NbtCompound nbt = stack.getOrCreateNbt();
                         if (nbt.getInt("rechargeTicks") == 12000) {
                             inventory.setStack(f, BotM.MIPHAS_GRACE.getDefaultStack());
-                            serverPlayerEntity.playSound(MIPHAS_GRACE_READY_SOUND, SoundCategory.PLAYERS, 10f, 1f);
+                            serverPlayerEntity.playSound(MIPHAS_GRACE_READY_SOUND, SoundCategory.PLAYERS, 20f, 1f);
+                            serverPlayerEntity.sendMessage(Text.translatable("botm.test"));
                             LOGGER.info("Mipha's Grace is now ready for "+serverPlayerEntity.getEntityName());
                             break;
                         }

@@ -1,0 +1,6 @@
+{
+    "parent": "botm:item/longsword",
+        "textures": {
+            "layer0": "botm:item/master_sword"
+        }
+}

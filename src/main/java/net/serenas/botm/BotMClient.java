@@ -9,6 +9,10 @@ public class BotMClient implements ClientModInitializer{
     @Override
     public void onInitializeClient() {
         ParticleFactoryRegistry.getInstance().register(BotM.BLUE_FLAME, FlameParticle.Factory::new);
+
+
+
     }
+    
     
 }

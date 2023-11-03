@@ -1,0 +1,8 @@
+{
+    "miphas_grace_ready": {
+        "subtitle": "subtitles.botm.miphas_grace_ready",
+        "sounds": [
+            "botm:miphas_grace_ready"
+        ]
+    }
+}

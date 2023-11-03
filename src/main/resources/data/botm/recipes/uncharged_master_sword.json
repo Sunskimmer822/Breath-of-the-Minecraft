@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "b",
+        "b",
+        "B"
+    ],
+    "key": {
+        "b": {
+            "item": "botm:master_steel_ingot"
+        },
+        "B": {
+            "item": "botm:rod_of_hylia"
+        }
+    },
+    "result": {
+        "item": "botm:uncharged_master_sword",
+        "count": 1
+    }
+}

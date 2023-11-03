@@ -14,6 +14,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.stat.Stats;
+import net.minecraft.world.World;
 import net.serenas.botm.BotM;
 
 @Mixin(LivingEntity.class)
@@ -38,7 +39,31 @@ public class LivingEntityThing {
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 300, 3));
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, 800, 1));
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 300, 1));
+                    livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 5, 5));
                     inventory.setStack(i, BotM.MIPHAS_GRACE_USED.getDefaultStack());
+                    World world = livingEntity.getWorld();
+                    
+                    //particles [sand nuts dealer]
+                    
+                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()+0.5, livingEntity.getY(), livingEntity.getZ(), 0, 0, 0);
+                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ()+0.5, 0, 0, 0);
+                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()-0.5, livingEntity.getY(), livingEntity.getZ(), 0, 0, 0);
+                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ()-0.5, 0, 0, 0);
+                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()+0.353553390593274, livingEntity.getY(), livingEntity.getZ()+0.353553390593274, 0, 0, 0);
+                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()+0.353553390593274, livingEntity.getY(), livingEntity.getZ()-0.353553390593274, 0, 0, 0);
+                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()-0.353553390593274, livingEntity.getY(), livingEntity.getZ()-0.353553390593274, 0, 0, 0);
+                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()-0.353553390593274, livingEntity.getY(), livingEntity.getZ()+0.353553390593274, 0, 0, 0);
+                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()+0.43301, livingEntity.getY(), livingEntity.getZ()+0.25, 0, 0, 0);
+                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()+0.25, livingEntity.getY(), livingEntity.getZ()+0.43301, 0, 0, 0);
+                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()-0.25, livingEntity.getY(), livingEntity.getZ()+0.43301, 0, 0, 0);
+                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()-0.43301, livingEntity.getY(), livingEntity.getZ()+0.25, 0, 0, 0);
+                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()-0.43301, livingEntity.getY(), livingEntity.getZ()-0.25, 0, 0, 0);
+                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()-0.25, livingEntity.getY(), livingEntity.getZ()-0.43301, 0, 0, 0);
+                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()+0.25, livingEntity.getY(), livingEntity.getZ()-0.43301, 0, 0, 0);
+                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()+0.43301, livingEntity.getY(), livingEntity.getZ()-0.25, 0, 0, 0);
+
+
+
                     info.setReturnValue(true);
                 break;
                 } 

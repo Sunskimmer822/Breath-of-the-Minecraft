@@ -1,5 +1,10 @@
 {
     "item.botm.travelers_bow": "Traveler's Bow",
     "item.botm.miphas_grace": "Mipha's Grace",
-    "item.botm.miphas_grace_used": "Mipha's Grace (Recharging)"
+    "item.botm.miphas_grace_used": "Mipha's Grace (Recharging)",
+    "item.botm.master_steel_ingot": "Master Steel Ingot",
+    "item.botm.charged_master_sword": "Charged Master Sword",
+    "item.botm.rod_of_hylia": "Rod of Hylia",
+    "item.botm.uncharged_master_sword": "Uncharged Master Sword",
+    "itemGroup.botm.botw_group": "BotW Mod Items"
 }

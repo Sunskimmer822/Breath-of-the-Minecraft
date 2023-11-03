@@ -37,7 +37,7 @@ public class TravelersBow extends RangedWeaponItem implements Vanishable {
         }
         PlayerEntity player = (PlayerEntity)user;
         boolean noUseArrowItem = player.getAbilities().creativeMode || EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0;
-        ItemStack arrowType = player.getArrowType(stack);
+        ItemStack arrowType = player.getProjectileType(stack);
         if (arrowType.isEmpty() && !noUseArrowItem) {
             return;
         }
@@ -105,7 +105,7 @@ public class TravelersBow extends RangedWeaponItem implements Vanishable {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
-        boolean bl = !user.getArrowType(stack).isEmpty();
+        boolean bl = !user.getProjectileType(stack).isEmpty();
         if (user.getAbilities().creativeMode || bl) {
             user.setCurrentHand(hand);
             return TypedActionResult.consume(stack);

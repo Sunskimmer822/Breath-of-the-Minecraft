@@ -39,11 +39,13 @@ public class LivingEntityThing {
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 300, 3));
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, 800, 1));
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 300, 1));
-                    livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 5, 5));
+                    livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 10, 5));
                     inventory.setStack(i, BotM.MIPHAS_GRACE_USED.getDefaultStack());
                     World world = livingEntity.getWorld();
                     
                     //particles [sand nuts dealer]
+
+                    //not working? look into this
                     
                     world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()+0.5, livingEntity.getY(), livingEntity.getZ(), 0, 0, 0);
                     world.addParticle(BotM.BLUE_FLAME, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ()+0.5, 0, 0, 0);

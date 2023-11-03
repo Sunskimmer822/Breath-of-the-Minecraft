@@ -53,7 +53,7 @@ public class BotM implements ModInitializer{
 
     public static final SwordItem CHARGED_MASTER_SWORD = new ChargedMasterSword(MasterSteelMaterial.INSTANCE, 5, 5f, new Item.Settings().maxDamage(2000).fireproof().rarity(Rarity.EPIC));
 
-    public static final SwordItem UNCHARGED_MASTER_SWORD = new UnchargedMasterSword(MasterSteelMaterial.INSTANCE, -5, -3f, new Item.Settings().fireproof());
+    public static final SwordItem UNCHARGED_MASTER_SWORD = new UnchargedMasterSword(MasterSteelMaterial.INSTANCE, -5, -3f, new Item.Settings().fireproof().rarity(Rarity.RARE));
 
     public static final Item ROD_OF_HYLIA = new RodOfHylia(new Item.Settings().fireproof().maxCount(64));
 

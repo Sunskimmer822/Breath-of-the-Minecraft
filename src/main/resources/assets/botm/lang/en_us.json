@@ -6,5 +6,8 @@
     "item.botm.charged_master_sword": "Charged Master Sword",
     "item.botm.rod_of_hylia": "Rod of Hylia",
     "item.botm.uncharged_master_sword": "Uncharged Master Sword",
+    "item.botm.generic_master_sword.tooltip_one": "A blade forged of godly steel, ",
+    "item.botm.charged_master_sword.tooltip_two": "bathed in Goddess Hylia's light.",
+    "item.botm.uncharged_master_sword.tooltip_two": "yet dormant and unawakened.",
     "itemGroup.botm.botw_group": "BotW Mod Items"
 }

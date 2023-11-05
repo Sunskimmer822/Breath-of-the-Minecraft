@@ -51,10 +51,10 @@ public class BotM implements ModInitializer{
 
     static ItemStack[] botwItems = {
         BotM.TRAVELERS_BOW.getDefaultStack(),
-        BotM.MIPHAS_GRACE.getDefaultStack(),
-        BotM.MIPHAS_GRACE_USED.getDefaultStack(),
         BotM.CHARGED_MASTER_SWORD.getDefaultStack(),
-        BotM.UNCHARGED_MASTER_SWORD.getDefaultStack()
+        BotM.UNCHARGED_MASTER_SWORD.getDefaultStack(),
+        BotM.MIPHAS_GRACE.getDefaultStack(),
+        BotM.MIPHAS_GRACE_USED.getDefaultStack()
     };
     
     public static final ItemGroup BOTW_MOD_GROUP = FabricItemGroup.builder()
@@ -90,6 +90,10 @@ public class BotM implements ModInitializer{
 
         LOGGER.info("BotM began initialization.");
 
+        Registry.register(Registries.ITEM_GROUP, new Identifier("botm", "botw_group"), BOTW_MOD_GROUP);
+
+        Registry.register(Registries.ITEM_GROUP, new Identifier("botm", "botw_materials_group"), BOTW_MATERIAL_GROUP);
+
         Registry.register(Registries.ITEM, new Identifier("botm", "travelers_bow"), TRAVELERS_BOW);
 
         Registry.register(Registries.ITEM, new Identifier("botm", "miphas_grace"), MIPHAS_GRACE);
@@ -104,7 +108,7 @@ public class BotM implements ModInitializer{
 
         Registry.register(Registries.ITEM, new Identifier("botm", "master_steel_ingot"), MASTER_STEEL_INGOT);
 
-        Registry.register(Registries.ITEM_GROUP, new Identifier("botm", "botw_mod_group"), BOTW_MOD_GROUP);
+        
 
         Registry.register(Registries.ITEM, new Identifier("botm", "rod_of_hylia"), ROD_OF_HYLIA);
 

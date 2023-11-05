@@ -33,9 +33,10 @@ public class ChargedMasterSword extends SwordItem {
         if (playerEntity.getHealth() > playerEntity.getMaxHealth()-1) {
             //master sword beam
             //MasterSwordBeamEntity beamEntity = new MasterSwordBeamEntity(world, owner, posvec3d)
-            ArrowEntity arrow = new ArrowEntity(world, playerEntity, Items.SPECTRAL_ARROW.getDefaultStack());
+            ArrowEntity arrow = new ArrowEntity(world, playerEntity, Items.ARROW.getDefaultStack());
             arrow.setPosition(playerEntity.getEyePos());
             arrow.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), playerEntity.getRoll(), 10f, 2f);
+            arrow.setCritical(true);
             world.spawnEntity(arrow);
             playerEntity.getItemCooldownManager().set(this, 40);
             return new TypedActionResult<ItemStack>(ActionResult.SUCCESS, playerEntity.getStackInHand(hand));

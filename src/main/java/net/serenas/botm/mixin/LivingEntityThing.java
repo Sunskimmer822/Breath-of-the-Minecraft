@@ -41,28 +41,36 @@ public class LivingEntityThing {
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 300, 1));
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 10, 5));
                     inventory.setStack(i, BotM.MIPHAS_GRACE_USED.getDefaultStack());
-                    World world = livingEntity.getWorld();
+                    //World world = livingEntity.getWorld();
+                    World world = playerEntity.getWorld();
                     
                     //particles [sand nuts dealer]
 
                     //not working? look into this
+                    if (world.isClient()) {
+                        for (int o=0;o<360;o++) {
+                            world.addParticle(BotM.BLUE_FLAME, true, playerEntity.getX()+Math.sin(o), playerEntity.getEyeY(), playerEntity.getZ()+Math.cos(o), 0, 0, 0);
+                        }
+                    }
+
                     
-                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()+0.5, livingEntity.getY(), livingEntity.getZ(), 0, 0, 0);
-                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ()+0.5, 0, 0, 0);
-                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()-0.5, livingEntity.getY(), livingEntity.getZ(), 0, 0, 0);
-                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ()-0.5, 0, 0, 0);
-                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()+0.353553390593274, livingEntity.getY(), livingEntity.getZ()+0.353553390593274, 0, 0, 0);
-                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()+0.353553390593274, livingEntity.getY(), livingEntity.getZ()-0.353553390593274, 0, 0, 0);
-                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()-0.353553390593274, livingEntity.getY(), livingEntity.getZ()-0.353553390593274, 0, 0, 0);
-                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()-0.353553390593274, livingEntity.getY(), livingEntity.getZ()+0.353553390593274, 0, 0, 0);
-                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()+0.43301, livingEntity.getY(), livingEntity.getZ()+0.25, 0, 0, 0);
-                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()+0.25, livingEntity.getY(), livingEntity.getZ()+0.43301, 0, 0, 0);
-                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()-0.25, livingEntity.getY(), livingEntity.getZ()+0.43301, 0, 0, 0);
-                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()-0.43301, livingEntity.getY(), livingEntity.getZ()+0.25, 0, 0, 0);
-                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()-0.43301, livingEntity.getY(), livingEntity.getZ()-0.25, 0, 0, 0);
-                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()-0.25, livingEntity.getY(), livingEntity.getZ()-0.43301, 0, 0, 0);
-                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()+0.25, livingEntity.getY(), livingEntity.getZ()-0.43301, 0, 0, 0);
-                    world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()+0.43301, livingEntity.getY(), livingEntity.getZ()-0.25, 0, 0, 0);
+                    
+                    // world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()+0.5, livingEntity.getY(), livingEntity.getZ(), 0, 0, 0);
+                    // world.addParticle(BotM.BLUE_FLAME, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ()+0.5, 0, 0, 0);
+                    // world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()-0.5, livingEntity.getY(), livingEntity.getZ(), 0, 0, 0);
+                    // world.addParticle(BotM.BLUE_FLAME, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ()-0.5, 0, 0, 0);
+                    // world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()+0.353553390593274, livingEntity.getY(), livingEntity.getZ()+0.353553390593274, 0, 0, 0);
+                    // world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()+0.353553390593274, livingEntity.getY(), livingEntity.getZ()-0.353553390593274, 0, 0, 0);
+                    // world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()-0.353553390593274, livingEntity.getY(), livingEntity.getZ()-0.353553390593274, 0, 0, 0);
+                    // world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()-0.353553390593274, livingEntity.getY(), livingEntity.getZ()+0.353553390593274, 0, 0, 0);
+                    // world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()+0.43301, livingEntity.getY(), livingEntity.getZ()+0.25, 0, 0, 0);
+                    // world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()+0.25, livingEntity.getY(), livingEntity.getZ()+0.43301, 0, 0, 0);
+                    // world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()-0.25, livingEntity.getY(), livingEntity.getZ()+0.43301, 0, 0, 0);
+                    // world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()-0.43301, livingEntity.getY(), livingEntity.getZ()+0.25, 0, 0, 0);
+                    // world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()-0.43301, livingEntity.getY(), livingEntity.getZ()-0.25, 0, 0, 0);
+                    // world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()-0.25, livingEntity.getY(), livingEntity.getZ()-0.43301, 0, 0, 0);
+                    // world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()+0.25, livingEntity.getY(), livingEntity.getZ()-0.43301, 0, 0, 0);
+                    // world.addParticle(BotM.BLUE_FLAME, livingEntity.getX()+0.43301, livingEntity.getY(), livingEntity.getZ()-0.25, 0, 0, 0);
 
 
 

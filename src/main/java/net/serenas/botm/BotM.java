@@ -1,7 +1,6 @@
 package net.serenas.botm;
 
 import java.lang.reflect.Array;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,17 +10,13 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -54,7 +49,13 @@ public class BotM implements ModInitializer{
 
 
 
-    static ItemStack[] botwItems = {BotM.TRAVELERS_BOW.getDefaultStack(),BotM.MIPHAS_GRACE.getDefaultStack(),BotM.MIPHAS_GRACE_USED.getDefaultStack(), BotM.MASTER_STEEL_INGOT.getDefaultStack(), BotM.CHARGED_MASTER_SWORD.getDefaultStack(), BotM.UNCHARGED_MASTER_SWORD.getDefaultStack(), BotM.ROD_OF_HYLIA.getDefaultStack()};
+    static ItemStack[] botwItems = {
+        BotM.TRAVELERS_BOW.getDefaultStack(),
+        BotM.MIPHAS_GRACE.getDefaultStack(),
+        BotM.MIPHAS_GRACE_USED.getDefaultStack(),
+        BotM.CHARGED_MASTER_SWORD.getDefaultStack(),
+        BotM.UNCHARGED_MASTER_SWORD.getDefaultStack()
+    };
     
     public static final ItemGroup BOTW_MOD_GROUP = FabricItemGroup.builder()
         .displayName(Text.translatable("itemGroup.botm.botw_group"))
@@ -65,6 +66,23 @@ public class BotM implements ModInitializer{
             }
         })
         .build();
+
+
+    static ItemStack[] botwMaterials = {
+        BotM.ROD_OF_HYLIA.getDefaultStack(),
+        BotM.MASTER_STEEL_INGOT.getDefaultStack()
+    };
+
+    public static final ItemGroup BOTW_MATERIAL_GROUP = FabricItemGroup.builder()
+        .displayName(Text.translatable("itemGroup.botm.botw_materials_group"))
+        .icon(() -> new ItemStack(BotM.MASTER_STEEL_INGOT))
+        .entries((content, entries) -> {
+            for (iterator = 0; iterator < Array.getLength(botwMaterials); iterator++) {
+                entries.add((ItemStack) Array.get(botwMaterials, iterator));
+            }
+        })
+        .build();
+    
 
 
     @Override
@@ -91,56 +109,11 @@ public class BotM implements ModInitializer{
         Registry.register(Registries.ITEM, new Identifier("botm", "rod_of_hylia"), ROD_OF_HYLIA);
 
         
-
+        
 
         ServerTickEvents.END_WORLD_TICK.register((world) -> {
 
-            //MIPHA'S GRACE
-            //Gets list of all online players, iterates over said players and iterates over every one of their slots. If an inactive 
-            //Mipha's Grace is found in any inventory it will first check if the item is at the threshold for being recharged, 
-            //otherwise it will ensure the tag is present and change the tag to include the new value every tick.
-            List<ServerPlayerEntity> players = world.getPlayers();
-            Integer numPlayers = players.size();
-            Integer e;
-            if (numPlayers == 0) return;
-            for (e = 0; e < numPlayers; e++) {
-                ServerPlayerEntity serverPlayerEntity = players.get(e);
-                PlayerInventory inventory = serverPlayerEntity.getInventory();
-                Integer inventorySize = inventory.size();
-                Integer f;
-                for (f = 0; f< inventorySize; f++) {
-                    ItemStack stack = inventory.getStack(f);
-
-
-
-                    //recharge Mipha's grace
-                    if (stack.isOf(BotM.MIPHAS_GRACE_USED)) {
-                        NbtCompound nbt = stack.getOrCreateNbt();
-                        if (nbt.getInt("rechargeTicks") == 12000) {
-                            inventory.setStack(f, BotM.MIPHAS_GRACE.getDefaultStack());
-                            serverPlayerEntity.playSound(MIPHAS_GRACE_READY_SOUND, SoundCategory.PLAYERS, 20f, 1f);
-                            serverPlayerEntity.sendMessage(Text.translatable("botm.test"));
-                            LOGGER.info("Mipha's Grace is now ready for "+serverPlayerEntity.getEntityName());
-                            break;
-                        }
-                        if (!nbt.contains("rechargeTicks")) {
-                            nbt.putInt("rechargeTicks", 0);
-                        } else {
-                            Integer currentTicks = nbt.getInt("rechargeTicks");
-                            currentTicks++;
-                            nbt.remove("rechargeTicks");
-                            nbt.putInt("rechargeTicks", currentTicks);
-                        }
-                    }
-
-                    //recharge master sword
-
-
-
-                }
-
-            }
-
+            ChampionAbilityHelper.doRechargeAbilitiesTick(world.getPlayers());
 
         });
 

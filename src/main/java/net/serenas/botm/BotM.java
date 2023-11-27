@@ -19,7 +19,11 @@ import net.minecraft.item.SwordItem;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.stat.Stat;
+import net.minecraft.stat.Stats;
+import net.minecraft.stat.StatFormatter;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
@@ -123,8 +127,8 @@ public class BotM implements ModInitializer{
             serverPlayers.forEach((player) -> {
 
                 if (player.isSneaking()) {
-		    player.incrementStat(BotM.SNEAK_TICKS);
-                } else player.resetStat(BotM.SNEAK_TICKS);
+		    player.incrementStat(SNEAK_TICKS);
+                } else player.resetStat(Stats.CUSTOM.SNEAK_TICKS);
 
             });
 

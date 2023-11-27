@@ -8,5 +8,10 @@ import net.minecraft.entity.player.PlayerEntity;
 @Mixin(PlayerEntity.class)
 public class PlayerEntityMixin {
 
-    //hi! there's nothing here at the moment, but thanks for checking!
+    @Inject(at = @At("TAIL"), method = "onDeath")
+    public void onDeath() {
+
+        ( (PlayerEntity) (Object) this ).resetStat(BotM.SNEAK_TICKS); 
+
+    }
 }

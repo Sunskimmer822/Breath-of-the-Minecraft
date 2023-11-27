@@ -11,5 +11,6 @@
     "item.botm.uncharged_master_sword.tooltip_two": "yet dormant and unawakened.",
     "itemGroup.botm.botw_group": "BotW Mod Items",
     "itemGroup.botm.botw_materials_group": "BotW Mod Materials",
-    "subtitles.botm.miphas_grace_ready": "Mipha's Grace recharges"
+    "subtitles.botm.miphas_grace_ready": "Mipha's Grace recharges",
+    "stat.botm.sneak_ticks": "Sneaking Ticks"
 }

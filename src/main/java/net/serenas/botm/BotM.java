@@ -2,6 +2,8 @@ package net.serenas.botm;
 
 import java.lang.reflect.Array;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,7 +49,8 @@ public class BotM implements ModInitializer{
 
     public static final Item ROD_OF_HYLIA = new RodOfHylia(new Item.Settings().fireproof().maxCount(64));
 
-
+	//sneak ticks stat
+    public static final Identifier SNEAK_TICKS = new Identifier("botm", "sneak_ticks");
 
     static ItemStack[] botwItems = {
         BotM.TRAVELERS_BOW.getDefaultStack(),
@@ -108,16 +111,24 @@ public class BotM implements ModInitializer{
 
         Registry.register(Registries.ITEM, new Identifier("botm", "master_steel_ingot"), MASTER_STEEL_INGOT);
 
-        
-
         Registry.register(Registries.ITEM, new Identifier("botm", "rod_of_hylia"), ROD_OF_HYLIA);
 
-        
-        
+        Registry.register(Registries.CUSTOM_STAT, "sneak_ticks", SNEAK_TICKS);
+        Stats.CUSTOM.getOrCreateStat(SNEAK_TICKS, StatFormatter.DEFAULT);
 
         ServerTickEvents.END_WORLD_TICK.register((world) -> {
 
-            ChampionAbilityHelper.doRechargeAbilitiesTick(world.getPlayers());
+            List<ServerPlayerEntity> serverPlayers = world.getPlayers();
+
+            serverPlayers.forEach((player) -> {
+
+                if (player.isSneaking()) {
+		    player.incrementStat(BotM.SNEAK_TICKS);
+                } else player.resetStat(BotM.SNEAK_TICKS);
+
+            });
+
+            ChampionAbilityHelper.doRechargeAbilitiesTick(serverPlayers);
 
         });
 

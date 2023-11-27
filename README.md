@@ -10,4 +10,4 @@ While in the root of the repository, run `./gradlew genSources` and then `./grad
 
 ## Known Bugs
 
-<strike>Mipha's Grace will still make `tryUseTotem` return false, registering the player as dead and as such increase stats and drop items/XP whether or not they have Mipha's Grace in their inventory. Pressing `Respawn` will simply get rid of the overlay and allow the player to continue on.</strike> This bug has been fixed as of november 2023.
+<strike>Mipha's Grace will still make `tryUseTotem` return false, registering the player as dead and as such increase stats and drop items/XP whether or not they have Mipha's Grace in their inventory. Pressing `Respawn` will simply get rid of the overlay and allow the player to continue on.</strike> This bug has been fixed as of november 2023. No official build contains this bug.

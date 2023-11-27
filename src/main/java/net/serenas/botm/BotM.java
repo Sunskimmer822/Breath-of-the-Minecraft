@@ -128,7 +128,7 @@ public class BotM implements ModInitializer{
 
                 if (player.isSneaking()) {
 		    player.incrementStat(SNEAK_TICKS);
-                } else player.resetStat(Stats.CUSTOM.SNEAK_TICKS);
+                } /*else player.resetStat(Stats.CUSTOM.SNEAK_TICKS);*/
 
             });
 

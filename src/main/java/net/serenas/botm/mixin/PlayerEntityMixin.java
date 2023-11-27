@@ -14,7 +14,7 @@ public class PlayerEntityMixin {
     @Inject(at = @At("TAIL"), method = "onDeath")
     public void onDeath(DamageSource damageSource, CallbackInfo cin) {
 
-        ( (PlayerEntity) (Object) this ).resetStat(net.serenas.botm.BotM.SNEAK_TICKS); 
+        /*( (PlayerEntity) (Object) this ).resetStat(net.serenas.botm.BotM.SNEAK_TICKS);*/ 
 
     }
 }

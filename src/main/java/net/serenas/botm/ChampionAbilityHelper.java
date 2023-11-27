@@ -36,7 +36,7 @@ public class ChampionAbilityHelper {
     public static void doRechargeAbilitiesTick(List<ServerPlayerEntity> players) {
         Item[] abilities = {BotM.MIPHAS_GRACE};
         Item[] usedAbilities = {BotM.MIPHAS_GRACE_USED};
-        for (int i = 0;i<1;i++) { // CHANGE WHEN ADDING NEW ABILITIES
+        for (int i = 0;i<abilities.length;i++) {
             final int o = i;
             players.forEach((player) -> {
                 List<ItemStack> abilityStacks = getAbilityStacks((PlayerEntity)(Object)player, usedAbilities[o]);
@@ -44,7 +44,6 @@ public class ChampionAbilityHelper {
 
                     NbtCompound nbt = stack.getOrCreateNbt();
                     if (nbt.getInt("rechargeTicks") == getAbilityRechargeTimeInTicks(o)) {
-                        //stack = abilities[o].getDefaultStack(); 
                         player.getInventory().setStack(player.getInventory().getSlotWithStack(stack), abilities[o].getDefaultStack());
                         player.playSound(getAbilityReadySound(o), SoundCategory.PLAYERS, 1f, 1f);
                         BotM.LOGGER.info(abilities[o].getName().toString()+" is now ready for "+player.getEntityName());

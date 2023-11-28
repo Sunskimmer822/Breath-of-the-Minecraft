@@ -21,7 +21,6 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.stat.Stat;
 import net.minecraft.stat.Stats;
 import net.minecraft.stat.StatFormatter;
 import net.minecraft.text.Text;
@@ -120,6 +119,12 @@ public class BotM implements ModInitializer{
         Registry.register(Registries.CUSTOM_STAT, "sneak_ticks", SNEAK_TICKS);
         Stats.CUSTOM.getOrCreateStat(SNEAK_TICKS, StatFormatter.DEFAULT);
 
+
+
+
+
+        
+
         ServerTickEvents.END_WORLD_TICK.register((world) -> {
 
             List<ServerPlayerEntity> serverPlayers = world.getPlayers();
@@ -127,8 +132,10 @@ public class BotM implements ModInitializer{
             serverPlayers.forEach((player) -> {
 
                 if (player.isSneaking()) {
-		    player.incrementStat(SNEAK_TICKS);
-                } /*else player.resetStat(Stats.CUSTOM.SNEAK_TICKS);*/
+		            player.incrementStat(SNEAK_TICKS);
+                } else {
+                    player.resetStat(Stats.CUSTOM.getOrCreateStat(BotM.SNEAK_TICKS));
+                }
 
             });
 

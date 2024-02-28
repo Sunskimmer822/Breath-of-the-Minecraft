@@ -21,8 +21,6 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.stat.Stats;
-import net.minecraft.stat.StatFormatter;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
@@ -51,9 +49,6 @@ public class BotM implements ModInitializer{
     public static final SwordItem UNCHARGED_MASTER_SWORD = new UnchargedMasterSword(MasterSteelMaterial.INSTANCE, -5, -3f, new Item.Settings().fireproof().rarity(Rarity.RARE));
 
     public static final Item ROD_OF_HYLIA = new RodOfHylia(new Item.Settings().fireproof().maxCount(64));
-
-	//sneak ticks stat
-    public static final Identifier SNEAK_TICKS = new Identifier("botm", "sneak_ticks");
 
     static ItemStack[] botwItems = {
         BotM.TRAVELERS_BOW.getDefaultStack(),
@@ -116,9 +111,6 @@ public class BotM implements ModInitializer{
 
         Registry.register(Registries.ITEM, new Identifier("botm", "rod_of_hylia"), ROD_OF_HYLIA);
 
-        Registry.register(Registries.CUSTOM_STAT, "sneak_ticks", SNEAK_TICKS);
-        Stats.CUSTOM.getOrCreateStat(SNEAK_TICKS, StatFormatter.DEFAULT);
-
 
 
 
@@ -131,11 +123,7 @@ public class BotM implements ModInitializer{
 
             serverPlayers.forEach((player) -> {
 
-                if (player.isSneaking()) {
-		            player.incrementStat(SNEAK_TICKS);
-                } else {
-                    player.resetStat(Stats.CUSTOM.getOrCreateStat(BotM.SNEAK_TICKS));
-                }
+                
 
             });
 

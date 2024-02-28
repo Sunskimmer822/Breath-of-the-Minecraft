@@ -16,7 +16,7 @@ public class PlayerEntityMixin {
     @Inject(at = @At("TAIL"), method = "onDeath")
     public void onDeath(DamageSource damageSource, CallbackInfo cin) {
 
-        ( (PlayerEntity) (Object) this ).resetStat(Stats.CUSTOM.getOrCreateStat(BotM.SNEAK_TICKS)); 
+        ( (PlayerEntity) (Object) this ).addCommandTag("hi"); 
 
     }
 
@@ -24,7 +24,7 @@ public class PlayerEntityMixin {
     public void jump(CallbackInfo cin) {
         PlayerEntity player = ((PlayerEntity)(Object)this);
         if (!player.isSpectator()) {
-            if (Integer.parseInt(Stats.CUSTOM.getOrCreateStat(BotM.SNEAK_TICKS).getValue().toString()) > 20) {
+            if (20 > 20) {
 
             }
         }

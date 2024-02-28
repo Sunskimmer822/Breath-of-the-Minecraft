@@ -1,7 +1,7 @@
 package net.serenas.botm;
 
 import java.lang.reflect.Array;
-
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -28,7 +28,7 @@ import net.minecraft.util.Rarity;
 
 public class BotM implements ModInitializer{
 
-    public static Map<ServerPlayerEntity, Integer> onlinePlayerSneakTicksMap;
+    public static Map<ServerPlayerEntity, Integer> onlinePlayerSneakTicksMap = Collections.emptyMap();
 
     public static Integer iterator;
 

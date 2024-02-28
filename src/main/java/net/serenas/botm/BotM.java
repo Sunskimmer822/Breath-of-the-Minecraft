@@ -3,6 +3,7 @@ package net.serenas.botm;
 import java.lang.reflect.Array;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +27,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
 public class BotM implements ModInitializer{
+
+    public static Map<ServerPlayerEntity, Integer> onlinePlayerSneakTicksMap;
 
     public static Integer iterator;
 
@@ -123,7 +126,8 @@ public class BotM implements ModInitializer{
 
             serverPlayers.forEach((player) -> {
 
-                
+                //increment number of ticks spent sneaking for all online players if sneaking and on ground, otherwise reset to 0. used for Revali's Gale activation.
+                onlinePlayerSneakTicksMap.put(player, (player.isSneaking()&&player.isOnGround()?onlinePlayerSneakTicksMap.get(player)+1:0));
 
             });
 

@@ -6,7 +6,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.stat.Stats;
 import net.serenas.botm.BotM;
 import net.minecraft.entity.damage.DamageSource;
 
@@ -24,8 +23,8 @@ public class PlayerEntityMixin {
     public void jump(CallbackInfo cin) {
         PlayerEntity player = ((PlayerEntity)(Object)this);
         if (!player.isSpectator()) {
-            if (20 > 20) {
-
+            if (BotM.onlinePlayerSneakTicksMap.get(player) >= 80) {
+                //TODO: Apply levitation and test until it feels right. after levitation, apply slow fall for a couple of seconds to allow easier paraglider/elytra activation
             }
         }
     }
